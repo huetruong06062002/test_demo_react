@@ -23,12 +23,24 @@ class MyComponent extends React.Component {
   handleOnMoverOver(event) {
     console.log(event.pageX);
   }
+
+  hanleOnChangeInput = (event) => {
+    this.setState({
+      name: event.target.value,
+    });
+  };
+
+  handleOnSubmit = (event) => {
+    event.preventDefault(); // ngăn chặn submit
+    console.log(this.state);
+  };
+
   //JSX: cho phép viết JS bên trong html
   render() {
     return (
       <div>
         My name is {this.state.name} and I'm {this.state.age}
-        <button onMouseOver={this.handleOnMoverOver}>Hover me</button>
+        {/* <button onMouseOver={this.handleOnMoverOver}>Hover me</button> */}
         <button
           onClick={(event) => {
             this.handleClick(event);
@@ -36,6 +48,15 @@ class MyComponent extends React.Component {
         >
           Click me
         </button>
+        <form onSubmit={(event) => this.handleOnSubmit(event)}>
+          <input
+            type="text"
+            onChange={(event) => {
+              this.hanleOnChangeInput(event);
+            }}
+          />
+          <button>Submit</button>
+        </form>
       </div>
     );
   }
