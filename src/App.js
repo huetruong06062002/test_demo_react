@@ -7,12 +7,6 @@ import React from "react";
 
 //Viết theo kiểu class components
 class App extends React.Component {
-  state = {
-    name: "Eric",
-    address: "Hoi Dan IT",
-    age: 21,
-  };
-
   render() {
     return (
       <div>
