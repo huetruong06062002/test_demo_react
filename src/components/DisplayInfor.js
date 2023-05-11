@@ -3,9 +3,30 @@ import "./DisplayInfor.scss";
 import logo from "../logo.svg";
 
 class DisplayInfor extends React.Component {
-  state = {
-    isShowListUser: true,
-  };
+  constructor(props) {
+    console.log(">>>> Constructor: 1");
+    super(props);
+    this.state = {
+      isShowListUser: true,
+    };
+  }
+
+  componentDidMount() {
+    console.log(">>>> ComponentDidMount: 3");
+    setTimeout(() => {
+      document.title = "HoidanIT";
+    }, 3000);
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log(">>>> ComponentDidUpdate: 4", this.props, prevProps);
+    if (
+      this.props.listUsers != prevProps.listUsers &&
+      this.props.listUsers.length == 5
+    ) {
+      alert("You have 5 members");
+    }
+  }
 
   handleShowHide = () => {
     this.setState({
@@ -15,12 +36,13 @@ class DisplayInfor extends React.Component {
 
   render() {
     //destructuring
+    console.log(">>> Render : 2");
     const { listUsers } = this.props;
 
     //props => viết tắt properties
     return (
       <div className="display-infor-container">
-        <img src={logo} />
+        {/* <img src={logo} /> */}
         <div>
           <h1
             onClick={() => {
@@ -39,6 +61,13 @@ class DisplayInfor extends React.Component {
                   <div>My name is {user.name}</div>
                   <div>My age is {user.age}</div>
                   <hr />
+                  <div>
+                    <button
+                      onClick={() => this.props.handleDeleteUser(user.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               );
             })}

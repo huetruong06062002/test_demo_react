@@ -6,13 +6,17 @@ import DisplayInfor from "./DisplayInfor";
 
 class MyComponent extends React.Component {
   // MyComponent kế thừa lại lớp Components của react
-  state = {
-    listUsers: [
-      { id: 1, name: "Hoi Dan IT", age: "16" },
-      { id: 2, name: "Eric", age: "26" },
-      { id: 3, name: "Henrry Phạm Dev", age: "69" },
-    ],
-  };
+  constructor(props) {
+    super(props);
+    //bable compliler
+    this.state = {
+      listUsers: [
+        { id: 1, name: "Hoi Dan IT", age: "16" },
+        { id: 2, name: "Eric", age: "26" },
+        { id: 3, name: "Henrry Phạm Dev", age: "69" },
+      ],
+    };
+  }
 
   handleAddNewUser = (userObj) => {
     // let listUsersNew = this.state.listUsers;
@@ -26,6 +30,14 @@ class MyComponent extends React.Component {
     });
   };
 
+  handleDeleteUser = (userId) => {
+    let listUsersClone = this.state.listUsers;
+    listUsersClone = listUsersClone.filter((item) => item.id !== userId);
+    this.setState({
+      listUsers: listUsersClone,
+    });
+  };
+
   //JSX: cho phép viết JS bên trong html
   render() {
     const myInfor = ["ab", "c", "d"];
@@ -33,7 +45,10 @@ class MyComponent extends React.Component {
       <>
         <div className="a">
           <AddUserInfor handleAddNewUser={this.handleAddNewUser} />
-          <DisplayInfor listUsers={this.state.listUsers} />
+          <DisplayInfor
+            listUsers={this.state.listUsers}
+            handleDeleteUser={this.handleDeleteUser}
+          />
         </div>
         <div className="b"></div>
       </>
