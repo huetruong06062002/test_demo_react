@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./DisplayInfor.scss";
 import logo from "../logo.svg";
 
 //Stateless : ko có state , có thể dùng function component
 //Stateful : có state
+
 // class DisplayInfor extends React.Component {
 //   constructor(props) {
 //     console.log(">>>> Constructor: 1");
@@ -82,15 +83,24 @@ import logo from "../logo.svg";
 
 const DisplayInfor = (props) => {
   const { listUsers } = props;
-  //props => viết tắt properties
+  const [isShowListUser, setShowListUser] = useState(true);
+
+  const handleShowListUser = () => {
+    setShowListUser(!isShowListUser);
+  };
+
   return (
     <div className="display-infor-container">
-      {/* <img src={logo} /> */}
       <div>
-        <h1></h1>
+        <h1
+          onClick={() => {
+            handleShowListUser();
+          }}
+        >
+          {isShowListUser ? "show list user" : "hide list user"}
+        </h1>
       </div>
-
-      {true && (
+      {isShowListUser && (
         <>
           {listUsers.map((user) => {
             return (
