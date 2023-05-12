@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // class AddUserInfor extends React.Component {
 //   state = {
@@ -108,6 +108,15 @@ const AddUserInfor = (props) => {
       age: age,
     });
   };
+
+  console.log(">>> call me render");
+
+  useEffect(() => {
+    setTimeout(() => {
+      document.title = "Eric & Hoi dan it";
+    }, 3000);
+    console.log(">>> call me useEffect");
+  }, []);
 
   return (
     <div>

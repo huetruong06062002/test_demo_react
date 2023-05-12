@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./DisplayInfor.scss";
 import logo from "../logo.svg";
 
@@ -88,6 +88,25 @@ const DisplayInfor = (props) => {
   const handleShowListUser = () => {
     setShowListUser(!isShowListUser);
   };
+
+  console.log(">>> call me render");
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     document.title = "Eric & Hoi dan it";
+  //   }, 3000);
+  //   console.log(">>> call me useEffect");
+  // }, []);
+
+  useEffect(() => {
+    if (listUsers.length === 0) {
+      alert("You have 0 users");
+    }
+    console.log(">>> call me useEffect");
+  }, [listUsers]);
+
+  // Tham số thứ 2 ko truyền gì vào sẽ là componentDidMount, truyền vào là
+  //ComponentDidUpdate
 
   return (
     <div className="display-infor-container">
