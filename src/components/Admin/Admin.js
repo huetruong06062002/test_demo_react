@@ -1,7 +1,7 @@
-import SideBar from "./Sidebar";
 import "./Admin.scss";
 import { FaBars } from "react-icons/fa";
 import { useState } from "react";
+import SideBar from "./Sidebar";
 const Admin = (props) => {
   const [collapsed, setCollapsed] = useState(false);
   return (
