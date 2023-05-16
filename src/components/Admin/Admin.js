@@ -3,6 +3,8 @@ import { FaBars } from "react-icons/fa";
 import { useState } from "react";
 import SideBar from "./Sidebar";
 import { Outlet } from "react-router-dom";
+import { FcPlus } from "react-icons";
+
 const Admin = (props) => {
   const [collapsed, setCollapsed] = useState(false);
   return (
