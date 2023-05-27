@@ -8,7 +8,7 @@ import { postCreateUser } from "../../../services/apiServices";
 
 const ModalCreateUser = (props) => {
   const { show, setShow } = props;
-
+  console.log(props);
   const handleClose = () => {
     setShow(false);
     setEmail("");
@@ -57,13 +57,14 @@ const ModalCreateUser = (props) => {
     }
 
     let data = await postCreateUser(email, password, username, role, image);
-
+    console.log(data);
     if (data && data.EC === 0) {
       toast.success(data.EM);
       handleClose();
+      await props.fetchListUsers();
     }
     if (data && data.EC !== 0) {
-      toast.errorr(data.EM);
+      toast.error(data.EM);
     }
   };
 
